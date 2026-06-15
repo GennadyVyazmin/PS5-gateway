@@ -1,53 +1,58 @@
-# PS5 Gateway
-Скрипт для Debian VM, которая работает как локальный gateway для PS5 или других устройств.
-Схема работы:
-```text
-PS5 → Debian VM → sing-box → VLESS Reality → интернет
+PS5 Gateway
 
-Скрипт работает с VLESS-подписками от 3x-ui.
+Скрипт для Debian VM, которая работает как локальный gateway для PS5 или других устройств.
+
+Схема работы:
+
+PS5 -> Debian VM -> sing-box -> VLESS Reality -> интернет
+
+Скрипт рассчитан на VLESS-подписки от 3x-ui.
 
 Поддерживается:
 
-* VLESS Reality;
-* подписка ссылкой;
-* base64-подписка;
-* несколько outbound в одной подписке;
-* выбор сервера через MetaCubeXD UI.
+* Debian 12/13
+* VLESS Reality
+* ссылка на подписку
+* base64-подписка
+* несколько outbound в одной подписке
+* выбор сервера через MetaCubeXD UI
 
 Требования
 
-Debian 12/13.
+На чистой Debian должен быть установлен curl.
 
-Перед запуском на чистой Debian нужно установить curl.
-
-Если вы под root:
+Если вы уже под root:
 
 apt update
 apt install -y curl
 
-Если вы под обычным пользователем и sudo уже есть:
+Если вы под обычным пользователем и sudo уже установлен:
 
 sudo apt update
 sudo apt install -y curl
 
-Если sudo нет, сначала зайдите под root:
+Если sudo не установлен, сначала зайдите под root:
 
 su -
 
-И затем выполните:
+Потом выполните:
 
 apt update
 apt install -y curl
 
-Установка и запуск
+Запуск
+
+Если вы под root:
 
 curl -fsSL 'https://raw.githubusercontent.com/GennadyVyazmin/PS5-gateway/refs/heads/main/setup-ps5-gateway.sh' -o /tmp/setup-ps5-gateway.sh && chmod +x /tmp/setup-ps5-gateway.sh && bash /tmp/setup-ps5-gateway.sh
 
-Если запускаете от обычного пользователя с установленным sudo:
+Если вы под обычным пользователем с sudo:
 
 curl -fsSL 'https://raw.githubusercontent.com/GennadyVyazmin/PS5-gateway/refs/heads/main/setup-ps5-gateway.sh' -o /tmp/setup-ps5-gateway.sh && chmod +x /tmp/setup-ps5-gateway.sh && sudo bash /tmp/setup-ps5-gateway.sh
 
 Меню
+
+После запуска появится меню:
 
 1. Установить
 2. Удалить
@@ -64,12 +69,10 @@ IP Debian VM скрипт покажет после установки.
 
 Web UI
 
-После установки интерфейс доступен по адресу:
+После установки MetaCubeXD UI будет доступен по адресу:
 
 http://IP_DEBIAN_VM:9090/ui
 
 В UI можно выбрать сервер вручную в группе select.
 
 Для игр лучше выбирать конкретный сервер вручную, а не auto, чтобы во время игры не было переключения outbound.
-
-:::
