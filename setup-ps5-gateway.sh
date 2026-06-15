@@ -1,269 +1,652 @@
-Это верно? [Y/n]: y
-
-Кого гнать через VPN?
-1) Только одно устройство, например PS5
-2) Всю LAN-подсеть, но реально пойдут только те устройства, у которых gateway = IP этой VM
-Выбор [1/2, по умолчанию 1]: 2
-Hit:1 http://security.debian.org/debian-security trixie-security InRelease
-Hit:2 http://deb.debian.org/debian trixie InRelease
-Hit:3 http://deb.debian.org/debian trixie-updates InRelease
-All packages are up to date.    
-curl is already the newest version (8.14.1-2+deb13u3).
-wget is already the newest version (1.25.0-2).
-ca-certificates is already the newest version (20250419).
-iproute2 is already the newest version (6.15.0-1).
-nftables is already the newest version (1.1.3-1).
-python3 is already the newest version (3.13.5-1).
-python3 set to manually installed.
-Installing:
-  git  gpg  unzip
-
-Installing dependencies:
-  dirmngr  gnupg       gnupg-utils  gpg-wks-client  gpgsm  libassuan9          liberror-perl  libgpg-error-l10n  libksba8      libngtcp2-crypto-gnutls8  patch
-  git-man  gnupg-l10n  gpg-agent    gpgconf         gpgv   libcurl3t64-gnutls  libgcrypt20    libgpg-error0      libngtcp2-16  libnpth0t64               pinentry-curses
-
-Suggested packages:
-  pinentry-gnome3  tor  git-doc  git-email  git-gui  gitk  gitweb  git-cvs  git-mediawiki  git-svn  gpg-wks-server  parcimonie  xloadimage  scdaemon  tpm2daemon  rng-tools  ed  diffutils-doc  pinentry-doc  zip
-
-Summary:
-  Upgrading: 0, Installing: 25, Removing: 0, Not Upgrading: 0
-  Download size: 16.7 MB
-  Space needed: 70.2 MB / 6,176 MB available
-
-Get:1 http://security.debian.org/debian-security trixie-security/main amd64 libgcrypt20 amd64 1.11.0-7+deb13u1 [843 kB]
-Get:2 http://deb.debian.org/debian trixie/main amd64 libgpg-error0 amd64 1.51-4 [82.1 kB]
-Get:3 http://deb.debian.org/debian trixie/main amd64 libassuan9 amd64 3.0.2-2 [61.5 kB]
-Get:4 http://deb.debian.org/debian trixie/main amd64 gpgconf amd64 2.4.7-21+deb13u1+b3 [129 kB]
-Get:5 http://deb.debian.org/debian trixie/main amd64 libksba8 amd64 1.6.7-2+b1 [136 kB]
-Get:6 http://deb.debian.org/debian trixie/main amd64 libnpth0t64 amd64 1.8-3 [23.2 kB]
-Get:7 http://deb.debian.org/debian trixie/main amd64 dirmngr amd64 2.4.7-21+deb13u1+b3 [384 kB]
-Get:8 http://deb.debian.org/debian trixie/main amd64 libngtcp2-16 amd64 1.11.0-1+deb13u1 [132 kB]
-Get:9 http://deb.debian.org/debian trixie/main amd64 libngtcp2-crypto-gnutls8 amd64 1.11.0-1+deb13u1 [29.5 kB]
-Get:10 http://deb.debian.org/debian trixie/main amd64 libcurl3t64-gnutls amd64 8.14.1-2+deb13u3 [384 kB]
-Get:11 http://deb.debian.org/debian trixie/main amd64 liberror-perl all 0.17030-1 [26.9 kB]
-Get:12 http://deb.debian.org/debian trixie/main amd64 git-man all 1:2.47.3-0+deb13u1 [2,205 kB]
-Get:13 http://deb.debian.org/debian trixie/main amd64 git amd64 1:2.47.3-0+deb13u1 [8,862 kB]
-Get:14 http://deb.debian.org/debian trixie/main amd64 gnupg-l10n all 2.4.7-21+deb13u1 [749 kB]
-Get:15 http://deb.debian.org/debian trixie/main amd64 gpg amd64 2.4.7-21+deb13u1+b3 [635 kB]
-Get:16 http://deb.debian.org/debian trixie/main amd64 pinentry-curses amd64 1.3.1-2 [86.4 kB]
-Get:17 http://deb.debian.org/debian trixie/main amd64 gpg-agent amd64 2.4.7-21+deb13u1+b3 [271 kB]
-Get:18 http://deb.debian.org/debian trixie/main amd64 gpgsm amd64 2.4.7-21+deb13u1+b3 [276 kB]
-Get:19 http://deb.debian.org/debian trixie/main amd64 gnupg all 2.4.7-21+deb13u1 [417 kB]
-Get:20 http://deb.debian.org/debian trixie/main amd64 gpg-wks-client amd64 2.4.7-21+deb13u1+b3 [109 kB]
-Get:21 http://deb.debian.org/debian trixie/main amd64 gpgv amd64 2.4.7-21+deb13u1+b3 [241 kB]
-Get:22 http://deb.debian.org/debian trixie/main amd64 libgpg-error-l10n all 1.51-4 [114 kB]
-Get:23 http://deb.debian.org/debian trixie/main amd64 patch amd64 2.8-2 [134 kB]
-Get:24 http://deb.debian.org/debian trixie/main amd64 unzip amd64 6.0-29 [173 kB]
-Get:25 http://deb.debian.org/debian trixie/main amd64 gnupg-utils amd64 2.4.7-21+deb13u1+b3 [195 kB]
-Fetched 16.7 MB in 1s (24.5 MB/s) 
-Selecting previously unselected package libgpg-error0:amd64.
-(Reading database ... 34908 files and directories currently installed.)
-Preparing to unpack .../00-libgpg-error0_1.51-4_amd64.deb ...
-Unpacking libgpg-error0:amd64 (1.51-4) ...
-Selecting previously unselected package libassuan9:amd64.
-Preparing to unpack .../01-libassuan9_3.0.2-2_amd64.deb ...
-Unpacking libassuan9:amd64 (3.0.2-2) ...
-Selecting previously unselected package libgcrypt20:amd64.
-Preparing to unpack .../02-libgcrypt20_1.11.0-7+deb13u1_amd64.deb ...
-Unpacking libgcrypt20:amd64 (1.11.0-7+deb13u1) ...
-Selecting previously unselected package gpgconf.
-Preparing to unpack .../03-gpgconf_2.4.7-21+deb13u1+b3_amd64.deb ...
-Unpacking gpgconf (2.4.7-21+deb13u1+b3) ...
-Selecting previously unselected package libksba8:amd64.
-Preparing to unpack .../04-libksba8_1.6.7-2+b1_amd64.deb ...
-Unpacking libksba8:amd64 (1.6.7-2+b1) ...
-Selecting previously unselected package libnpth0t64:amd64.
-Preparing to unpack .../05-libnpth0t64_1.8-3_amd64.deb ...
-Unpacking libnpth0t64:amd64 (1.8-3) ...
-Selecting previously unselected package dirmngr.
-Preparing to unpack .../06-dirmngr_2.4.7-21+deb13u1+b3_amd64.deb ...
-Unpacking dirmngr (2.4.7-21+deb13u1+b3) ...
-Selecting previously unselected package libngtcp2-16:amd64.
-Preparing to unpack .../07-libngtcp2-16_1.11.0-1+deb13u1_amd64.deb ...
-Unpacking libngtcp2-16:amd64 (1.11.0-1+deb13u1) ...
-Selecting previously unselected package libngtcp2-crypto-gnutls8:amd64.
-Preparing to unpack .../08-libngtcp2-crypto-gnutls8_1.11.0-1+deb13u1_amd64.deb ...
-Unpacking libngtcp2-crypto-gnutls8:amd64 (1.11.0-1+deb13u1) ...
-Selecting previously unselected package libcurl3t64-gnutls:amd64.
-Preparing to unpack .../09-libcurl3t64-gnutls_8.14.1-2+deb13u3_amd64.deb ...
-Unpacking libcurl3t64-gnutls:amd64 (8.14.1-2+deb13u3) ...
-Selecting previously unselected package liberror-perl.
-Preparing to unpack .../10-liberror-perl_0.17030-1_all.deb ...
-Unpacking liberror-perl (0.17030-1) ...
-Selecting previously unselected package git-man.
-Preparing to unpack .../11-git-man_1%3a2.47.3-0+deb13u1_all.deb ...
-Unpacking git-man (1:2.47.3-0+deb13u1) ...
-Selecting previously unselected package git.
-Preparing to unpack .../12-git_1%3a2.47.3-0+deb13u1_amd64.deb ...
-Unpacking git (1:2.47.3-0+deb13u1) ...
-Selecting previously unselected package gnupg-l10n.
-Preparing to unpack .../13-gnupg-l10n_2.4.7-21+deb13u1_all.deb ...
-Unpacking gnupg-l10n (2.4.7-21+deb13u1) ...
-Selecting previously unselected package gpg.
-Preparing to unpack .../14-gpg_2.4.7-21+deb13u1+b3_amd64.deb ...
-Unpacking gpg (2.4.7-21+deb13u1+b3) ...
-Selecting previously unselected package pinentry-curses.
-Preparing to unpack .../15-pinentry-curses_1.3.1-2_amd64.deb ...
-Unpacking pinentry-curses (1.3.1-2) ...
-Selecting previously unselected package gpg-agent.
-Preparing to unpack .../16-gpg-agent_2.4.7-21+deb13u1+b3_amd64.deb ...
-Unpacking gpg-agent (2.4.7-21+deb13u1+b3) ...
-Selecting previously unselected package gpgsm.
-Preparing to unpack .../17-gpgsm_2.4.7-21+deb13u1+b3_amd64.deb ...
-Unpacking gpgsm (2.4.7-21+deb13u1+b3) ...
-Selecting previously unselected package gnupg.
-Preparing to unpack .../18-gnupg_2.4.7-21+deb13u1_all.deb ...
-Unpacking gnupg (2.4.7-21+deb13u1) ...
-Selecting previously unselected package gpg-wks-client.
-Preparing to unpack .../19-gpg-wks-client_2.4.7-21+deb13u1+b3_amd64.deb ...
-Unpacking gpg-wks-client (2.4.7-21+deb13u1+b3) ...
-Selecting previously unselected package gpgv.
-Preparing to unpack .../20-gpgv_2.4.7-21+deb13u1+b3_amd64.deb ...
-Unpacking gpgv (2.4.7-21+deb13u1+b3) ...
-Selecting previously unselected package libgpg-error-l10n.
-Preparing to unpack .../21-libgpg-error-l10n_1.51-4_all.deb ...
-Unpacking libgpg-error-l10n (1.51-4) ...
-Selecting previously unselected package patch.
-Preparing to unpack .../22-patch_2.8-2_amd64.deb ...
-Unpacking patch (2.8-2) ...
-Selecting previously unselected package unzip.
-Preparing to unpack .../23-unzip_6.0-29_amd64.deb ...
-Unpacking unzip (6.0-29) ...
-Selecting previously unselected package gnupg-utils.
-Preparing to unpack .../24-gnupg-utils_2.4.7-21+deb13u1+b3_amd64.deb ...
-Unpacking gnupg-utils (2.4.7-21+deb13u1+b3) ...
-Setting up libnpth0t64:amd64 (1.8-3) ...
-Setting up libgpg-error0:amd64 (1.51-4) ...
-Setting up unzip (6.0-29) ...
-Setting up libgcrypt20:amd64 (1.11.0-7+deb13u1) ...
-Setting up liberror-perl (0.17030-1) ...
-Setting up gnupg-l10n (2.4.7-21+deb13u1) ...
-Setting up patch (2.8-2) ...
-Setting up gpgv (2.4.7-21+deb13u1+b3) ...
-Setting up libassuan9:amd64 (3.0.2-2) ...
-Setting up gpgconf (2.4.7-21+deb13u1+b3) ...
-Setting up git-man (1:2.47.3-0+deb13u1) ...
-Setting up libngtcp2-16:amd64 (1.11.0-1+deb13u1) ...
-Setting up libgpg-error-l10n (1.51-4) ...
-Setting up libngtcp2-crypto-gnutls8:amd64 (1.11.0-1+deb13u1) ...
-Setting up libksba8:amd64 (1.6.7-2+b1) ...
-Setting up pinentry-curses (1.3.1-2) ...
-Setting up gpg-agent (2.4.7-21+deb13u1+b3) ...
-Created symlink '/etc/systemd/user/sockets.target.wants/gpg-agent-browser.socket' → '/usr/lib/systemd/user/gpg-agent-browser.socket'.
-Created symlink '/etc/systemd/user/sockets.target.wants/gpg-agent-extra.socket' → '/usr/lib/systemd/user/gpg-agent-extra.socket'.
-Created symlink '/etc/systemd/user/sockets.target.wants/gpg-agent-ssh.socket' → '/usr/lib/systemd/user/gpg-agent-ssh.socket'.
-Created symlink '/etc/systemd/user/sockets.target.wants/gpg-agent.socket' → '/usr/lib/systemd/user/gpg-agent.socket'.
-Setting up gpgsm (2.4.7-21+deb13u1+b3) ...
-Setting up libcurl3t64-gnutls:amd64 (8.14.1-2+deb13u3) ...
-Setting up dirmngr (2.4.7-21+deb13u1+b3) ...
-Created symlink '/etc/systemd/user/sockets.target.wants/dirmngr.socket' → '/usr/lib/systemd/user/dirmngr.socket'.
-Setting up git (1:2.47.3-0+deb13u1) ...
-Setting up gpg (2.4.7-21+deb13u1+b3) ...
-Created symlink '/etc/systemd/user/sockets.target.wants/keyboxd.socket' → '/usr/lib/systemd/user/keyboxd.socket'.
-Setting up gnupg-utils (2.4.7-21+deb13u1+b3) ...
-Setting up gpg-wks-client (2.4.7-21+deb13u1+b3) ...
-Setting up gnupg (2.4.7-21+deb13u1) ...
-Processing triggers for man-db (2.13.1-1) ...
-Processing triggers for libc-bin (2.41-12+deb13u3) ...
-curl: (22) The requested URL returned error: 404
-gpg: no valid OpenPGP data found.
-root@debian:~# sudo bash /tmp/setup-ps5-gateway.sh
-
-PS5 Gateway + sing-box
-1. Установить
-2. Удалить
-3. Изменить конфигурацию
-
-Выбор [1-3]: `
-Неверный выбор
-root@debian:~# sudo bash /tmp/setup-ps5-gateway.sh
-
-PS5 Gateway + sing-box
-1. Установить
-2. Удалить
-3. Изменить конфигурацию
-
-Выбор [1-3]: 1
-
-Найдено:
-  Интерфейс VM: ens18
-  IP VM:        192.168.88.29
-  Роутер:       192.168.88.1
-  LAN:          192.168.88.0/24
-
-Это верно? [Y/n]: y
-
-Кого гнать через VPN?
-1) Только одно устройство, например PS5
-2) Всю LAN-подсеть, но реально пойдут только те устройства, у которых gateway = IP этой VM
-Выбор [1/2, по умолчанию 1]: 2
-Hit:1 http://security.debian.org/debian-security trixie-security InRelease
-Hit:2 http://deb.debian.org/debian trixie InRelease
-Hit:3 http://deb.debian.org/debian trixie-updates InRelease
-All packages are up to date.    
-curl is already the newest version (8.14.1-2+deb13u3).
-wget is already the newest version (1.25.0-2).
-ca-certificates is already the newest version (20250419).
-gpg is already the newest version (2.4.7-21+deb13u1+b3).
-iproute2 is already the newest version (6.15.0-1).
-nftables is already the newest version (1.1.3-1).
-python3 is already the newest version (3.13.5-1).
-git is already the newest version (1:2.47.3-0+deb13u1).
-unzip is already the newest version (6.0-29).
-Summary:
-  Upgrading: 0, Installing: 0, Removing: 0, Not Upgrading: 0
-File '/etc/apt/keyrings/sagernet.gpg' exists. Overwrite? (y/N) curl: (22) The requested URL returned error: 404
-
-Enter new filename: 
-gpg: signal Interrupt caught ... exiting
-
-root@debian:~# sudo bash /tmp/setup-ps5-gateway.sh
-
-PS5 Gateway + sing-box
-1. Установить
-2. Удалить
-3. Изменить конфигурацию
-
-Выбор [1-3]: 2
-Удаляю настройки PS5 gateway...
-Удалить пакет sing-box и конфиги? [y/N]: y
-Error: Unable to locate package sing-box
-Удаление завершено.
-root@debian:~# sudo bash /tmp/setup-ps5-gateway.sh
-
-PS5 Gateway + sing-box
-1. Установить
-2. Удалить
-3. Изменить конфигурацию
-
-Выбор [1-3]: 1
-
-Найдено:
-  Интерфейс VM: ens18
-  IP VM:        192.168.88.29
-  Роутер:       192.168.88.1
-  LAN:          192.168.88.0/24
-
-Это верно? [Y/n]: y
-
-Кого гнать через VPN?
-1) Только одно устройство, например PS5
-2) Всю LAN-подсеть, но реально пойдут только те устройства, у которых gateway = IP этой VM
-Выбор [1/2, по умолчанию 1]: 2
-Hit:1 http://deb.debian.org/debian trixie InRelease
-Hit:2 http://security.debian.org/debian-security trixie-security InRelease
-Hit:3 http://deb.debian.org/debian trixie-updates InRelease
-All packages are up to date.    
-curl is already the newest version (8.14.1-2+deb13u3).
-wget is already the newest version (1.25.0-2).
-ca-certificates is already the newest version (20250419).
-gpg is already the newest version (2.4.7-21+deb13u1+b3).
-iproute2 is already the newest version (6.15.0-1).
-nftables is already the newest version (1.1.3-1).
-python3 is already the newest version (3.13.5-1).
-git is already the newest version (1:2.47.3-0+deb13u1).
-unzip is already the newest version (6.0-29).
-Summary:
-  Upgrading: 0, Installing: 0, Removing: 0, Not Upgrading: 0
-File '/etc/apt/keyrings/sagernet.gpg' exists. Overwrite? (y/N) curl: (22) The requested URL returned error: 404
-
+#!/usr/bin/env bash
+set -euo pipefail
+APP_DIR="/etc/ps5-gateway"
+SETTINGS_FILE="$APP_DIR/settings.env"
+SUB_FILE="$APP_DIR/subscription.txt"
+SINGBOX_DIR="/etc/sing-box"
+SINGBOX_CONFIG="$SINGBOX_DIR/config.json"
+SINGBOX_BACKUP_DIR="/etc/sing-box-backups"
+ROUTE_SCRIPT="/usr/local/sbin/ps5-gateway-route.sh"
+ROUTE_SERVICE="/etc/systemd/system/ps5-gateway-route.service"
+TABLE_ID="200"
+RULE_PRIORITY="100"
+TUN_IFACE="sb-tun0"
+MIXED_PORT="2080"
+CLASH_PORT="9090"
+UI_DIR="/etc/sing-box/ui"
+need_root() {
+  if [ "$(id -u)" -ne 0 ]; then
+    echo "Запусти от root:"
+    echo "  sudo bash $0"
+    exit 1
+  fi
+}
+detect_network() {
+  DEFAULT_LINE="$(ip -4 route show default | head -n1 || true)"
+  if [ -z "$DEFAULT_LINE" ]; then
+    echo "Не нашёл default route. Проверь, что VM подключена к сети."
+    exit 1
+  fi
+  LAN_IFACE="$(echo "$DEFAULT_LINE" | awk '{for(i=1;i<=NF;i++) if($i=="dev") print $(i+1)}')"
+  LAN_GATEWAY="$(echo "$DEFAULT_LINE" | awk '{for(i=1;i<=NF;i++) if($i=="via") print $(i+1)}')"
+  VM_IP="$(ip -4 addr show dev "$LAN_IFACE" | awk '/inet / {print $2}' | head -n1 | cut -d/ -f1)"
+  LAN_CIDR="$(ip -4 route show dev "$LAN_IFACE" scope link | awk '{print $1}' | head -n1)"
+  if [ -z "${LAN_IFACE:-}" ] || [ -z "${LAN_GATEWAY:-}" ] || [ -z "${VM_IP:-}" ] || [ -z "${LAN_CIDR:-}" ]; then
+    echo "Не смог автоматически определить сеть."
+    echo "LAN_IFACE=$LAN_IFACE"
+    echo "LAN_GATEWAY=$LAN_GATEWAY"
+    echo "VM_IP=$VM_IP"
+    echo "LAN_CIDR=$LAN_CIDR"
+    exit 1
+  fi
+}
+confirm_network() {
+  detect_network
+  echo
+  echo "Найдено:"
+  echo "  Интерфейс VM: $LAN_IFACE"
+  echo "  IP VM:        $VM_IP"
+  echo "  Роутер:       $LAN_GATEWAY"
+  echo "  LAN:          $LAN_CIDR"
+  echo
+  read -r -p "Это верно? [Y/n]: " ok
+  ok="${ok:-Y}"
+  if [[ ! "$ok" =~ ^[YyДд]$ ]]; then
+    read -r -p "Интерфейс VM, например enp0s3/ens18: " LAN_IFACE
+    read -r -p "IP VM, например 192.168.88.18: " VM_IP
+    read -r -p "IP роутера, например 192.168.88.1: " LAN_GATEWAY
+    read -r -p "LAN CIDR, например 192.168.88.0/24: " LAN_CIDR
+  fi
+}
+install_deps() {
+  apt update
+  apt install -y curl wget ca-certificates iproute2 nftables python3 git unzip
+}
+install_singbox() {
+  if command -v sing-box >/dev/null 2>&1; then
+    echo "sing-box уже установлен:"
+    sing-box version | head -n1 || true
+    systemctl enable sing-box || true
+    return
+  fi
+  echo "Устанавливаю sing-box официальным install.sh..."
+  rm -f /etc/apt/keyrings/sagernet.gpg
+  rm -f /etc/apt/keyrings/sagernet.asc
+  rm -f /etc/apt/sources.list.d/sagernet.list
+  rm -f /etc/apt/sources.list.d/sagernet.sources
+  curl -fsSL https://sing-box.app/install.sh -o /tmp/sing-box-install.sh
+  sh /tmp/sing-box-install.sh
+  rm -f /tmp/sing-box-install.sh
+  if ! command -v sing-box >/dev/null 2>&1; then
+    echo "Ошибка: sing-box не появился в PATH после установки."
+    exit 1
+  fi
+  systemctl enable sing-box || true
+  echo "Установлен:"
+  sing-box version | head -n1 || true
+}
+install_ui() {
+  mkdir -p "$SINGBOX_DIR"
+  rm -rf "$UI_DIR"
+  echo "Скачиваю MetaCubeXD UI..."
+  if git clone https://github.com/MetaCubeX/metacubexd.git -b gh-pages "$UI_DIR"; then
+    echo "UI установлен в $UI_DIR"
+  else
+    echo "Не удалось скачать UI через git. Создаю пустую папку, UI можно поставить позже."
+    mkdir -p "$UI_DIR"
+  fi
+}
+ask_client() {
+  echo
+  echo "Кого гнать через VPN?"
+  echo "1) Только одно устройство, например PS5"
+  echo "2) Всю LAN-подсеть"
+  echo
+  echo "Важно: даже если выбрать всю LAN, через VM пойдут только те устройства,"
+  echo "у которых gateway вручную указан как IP этой VM."
+  echo
+  read -r -p "Выбор [1/2, по умолчанию 1]: " route_mode
+  route_mode="${route_mode:-1}"
+  if [ "$route_mode" = "2" ]; then
+    ROUTE_SOURCE="$LAN_CIDR"
+  else
+    read -r -p "IP PS5/клиента, например 192.168.88.10: " CLIENT_IP
+    if [ -z "$CLIENT_IP" ]; then
+      echo "IP клиента пустой."
+      exit 1
+    fi
+    ROUTE_SOURCE="$CLIENT_IP"
+  fi
+}
+save_settings() {
+  mkdir -p "$APP_DIR"
+  cat > "$SETTINGS_FILE" <<EOF
+LAN_IFACE="$LAN_IFACE"
+LAN_GATEWAY="$LAN_GATEWAY"
+VM_IP="$VM_IP"
+LAN_CIDR="$LAN_CIDR"
+ROUTE_SOURCE="$ROUTE_SOURCE"
+TABLE_ID="$TABLE_ID"
+RULE_PRIORITY="$RULE_PRIORITY"
+TUN_IFACE="$TUN_IFACE"
+MIXED_PORT="$MIXED_PORT"
+CLASH_PORT="$CLASH_PORT"
+EOF
+}
+load_settings() {
+  if [ ! -f "$SETTINGS_FILE" ]; then
+    echo "Настройки не найдены. Сначала выбери пункт 1 — установить."
+    exit 1
+  fi
+  # shellcheck disable=SC1090
+  source "$SETTINGS_FILE"
+}
+read_subscription_input() {
+  echo
+  echo "Вставь одно из:"
+  echo "  - одну vless:// ссылку"
+  echo "  - несколько vless:// ссылок"
+  echo "  - http/https ссылку на подписку"
+  echo
+  echo "Поддерживается:"
+  echo "  - обычный список vless://"
+  echo "  - base64 от списка vless://"
+  echo "  - type=tcp"
+  echo "  - type=xhttp, будет преобразован в HTTP transport"
+  echo "  - type=http/h2"
+  echo "  - type=ws"
+  echo "  - type=grpc"
+  echo "  - type=httpupgrade"
+  echo
+  echo "Когда закончишь вставку, нажми Enter на пустой строке."
+  echo
+  local input=""
+  local line=""
+  while IFS= read -r line; do
+    [ -z "$line" ] && break
+    input+="$line"$'\n'
+  done
+  if [ -z "$input" ]; then
+    echo "Пустой ввод."
+    exit 1
+  fi
+  mkdir -p "$APP_DIR"
+  printf "%s" "$input" > "$SUB_FILE"
+}
+generate_singbox_config() {
+  load_settings
+  mkdir -p "$SINGBOX_DIR" "$SINGBOX_BACKUP_DIR"
+  if [ -f "$SINGBOX_CONFIG" ]; then
+    cp "$SINGBOX_CONFIG" "$SINGBOX_BACKUP_DIR/config.json.$(date +%Y%m%d-%H%M%S).bak"
+  fi
+  python3 - "$SUB_FILE" "$SINGBOX_CONFIG" "$UI_DIR" <<'PY'
+import base64
+import ipaddress
+import json
+import os
+import re
+import sys
+import urllib.parse
+import urllib.request
+sub_file, out_file, ui_dir = sys.argv[1], sys.argv[2], sys.argv[3]
+raw = open(sub_file, "r", encoding="utf-8", errors="ignore").read().strip()
+def fetch_if_url(s):
+    s = s.strip()
+    if s.startswith("http://") or s.startswith("https://"):
+        req = urllib.request.Request(
+            s,
+            headers={
+                "User-Agent": "Mozilla/5.0 sing-box-subscription-parser"
+            }
+        )
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return r.read().decode("utf-8", errors="ignore")
+    return s
+def maybe_b64_decode(s):
+    if "vless://" in s:
+        return s
+    compact = re.sub(r"\s+", "", s)
+    if not compact:
+        return s
+    for decoder in (base64.urlsafe_b64decode, base64.b64decode):
+        try:
+            pad = "=" * (-len(compact) % 4)
+            decoded = decoder((compact + pad).encode()).decode("utf-8", errors="ignore")
+            if "vless://" in decoded:
+                return decoded
+        except Exception:
+            pass
+    return s
+def first(q, *names, default=""):
+    for name in names:
+        if name in q and q[name]:
+            return q[name][0]
+    return default
+def sanitize_tag(name, fallback):
+    name = urllib.parse.unquote(name or "")
+    if not name:
+        name = fallback
+    translit = {
+        "🇹🇷": "turk",
+        "🇫🇮": "finland",
+        "🇵🇱": "poland",
+        "🇩🇪": "germany",
+        "🇰🇿": "kz",
+        "🇮🇳": "india",
+    }
+    for k, v in translit.items():
+        name = name.replace(k, v + "-")
+    name = name.lower()
+    name = re.sub(r"[^a-z0-9._-]+", "-", name)
+    name = re.sub(r"-+", "-", name).strip("-")
+    return name or fallback
+def parse_links(content):
+    links = re.findall(r"vless://[^\s\"'<>]+", content)
+    if not links and content.startswith("vless://"):
+        links = [content]
+    return links
+content = maybe_b64_decode(fetch_if_url(raw))
+links = parse_links(content)
+if not links:
+    print("Не нашёл vless:// ссылок в вводе/подписке.", file=sys.stderr)
+    sys.exit(1)
+outbounds = [
+    {
+        "type": "direct",
+        "tag": "direct"
+    },
+    {
+        "type": "block",
+        "tag": "block"
+    },
+]
+vps_ips = []
+tags = []
+used_tags = set(["direct", "block", "auto", "select"])
+skipped = []
+for idx, link in enumerate(links, start=1):
+    try:
+        u = urllib.parse.urlsplit(link)
+        q = urllib.parse.parse_qs(u.query)
+        server = u.hostname
+        port = u.port
+        uuid = urllib.parse.unquote(u.username or "")
+        fragment = urllib.parse.unquote(u.fragment or "")
+        if not server or not port or not uuid:
+            skipped.append(f"#{idx}: нет server/port/uuid")
+            continue
+        base_tag = sanitize_tag(fragment, f"proxy-{idx}")
+        tag = base_tag
+        n = 2
+        while tag in used_tags:
+            tag = f"{base_tag}-{n}"
+            n += 1
+        sni = first(q, "sni", "serverName", "servername", default="www.nvidia.com")
+        pbk = first(q, "pbk", "public_key", "publicKey", "pubkey")
+        sid = first(q, "sid", "short_id", "shortId")
+        fp = first(q, "fp", "fingerprint", default="chrome")
+        link_type = first(q, "type", default="tcp").lower()
+        if not pbk:
+            skipped.append(f"{fragment or server}: нет pbk/public_key")
+            continue
+        transport = None
+        if link_type == "tcp":
+            transport = None
+        elif link_type == "xhttp":
+            path = first(q, "path", default="/")
+            host = first(q, "host", default="")
+            method = first(q, "method", default="GET")
+            transport = {
+                "type": "http",
+                "path": path or "/",
+                "method": method or "GET"
+            }
+            if host:
+                transport["host"] = [host]
+        elif link_type in ("http", "h2"):
+            path = first(q, "path", default="/")
+            host = first(q, "host", default="")
+            method = first(q, "method", default="GET")
+            transport = {
+                "type": "http",
+                "path": path or "/",
+                "method": method or "GET"
+            }
+            if host:
+                transport["host"] = [host]
+        elif link_type in ("ws", "websocket"):
+            path = first(q, "path", default="/")
+            host = first(q, "host", default="")
+            headers = {}
+            if host:
+                headers["Host"] = host
+            transport = {
+                "type": "ws",
+                "path": path or "/"
+            }
+            if headers:
+                transport["headers"] = headers
+        elif link_type == "grpc":
+            service_name = first(q, "serviceName", "service_name", "path", default="")
+            transport = {
+                "type": "grpc",
+                "service_name": service_name
+            }
+        elif link_type == "httpupgrade":
+            path = first(q, "path", default="/")
+            host = first(q, "host", default="")
+            transport = {
+                "type": "httpupgrade",
+                "path": path or "/"
+            }
+            if host:
+                transport["host"] = host
+        else:
+            skipped.append(f"{fragment or server}: type={link_type} пока не поддерживается")
+            continue
+        outbound = {
+            "type": "vless",
+            "tag": tag,
+            "server": server,
+            "server_port": port,
+            "uuid": uuid,
+            "packet_encoding": "xudp",
+            "tls": {
+                "enabled": True,
+                "server_name": sni,
+                "reality": {
+                    "enabled": True,
+                    "public_key": pbk,
+                    "short_id": sid
+                },
+                "utls": {
+                    "enabled": True,
+                    "fingerprint": fp
+                }
+            }
+        }
+        if transport:
+            outbound["transport"] = transport
+        used_tags.add(tag)
+        tags.append(tag)
+        outbounds.append(outbound)
+        try:
+            ipaddress.ip_address(server)
+            vps_ips.append(f"{server}/32")
+        except Exception:
+            pass
+    except Exception as e:
+        skipped.append(f"#{idx}: ошибка парсинга: {e}")
+if not tags:
+    print("Нет валидных VLESS outbound.", file=sys.stderr)
+    if skipped:
+        print("Пропущено:", file=sys.stderr)
+        for item in skipped:
+            print("  - " + item, file=sys.stderr)
+    sys.exit(1)
+if len(tags) > 1:
+    outbounds.insert(2, {
+        "type": "urltest",
+        "tag": "auto",
+        "outbounds": tags,
+        "url": "https://google.com/generate_204",
+        "interval": "3m",
+        "tolerance": 50,
+        "idle_timeout": "30m",
+        "interrupt_exist_connections": False
+    })
+    outbounds.insert(3, {
+        "type": "selector",
+        "tag": "select",
+        "outbounds": ["auto"] + tags,
+        "default": "auto",
+        "interrupt_exist_connections": False
+    })
+else:
+    outbounds.insert(2, {
+        "type": "selector",
+        "tag": "select",
+        "outbounds": tags,
+        "default": tags[0],
+        "interrupt_exist_connections": False
+    })
+rules = [
+    {
+        "ip_version": 6,
+        "outbound": "block"
+    },
+    {
+        "ip_is_private": True,
+        "outbound": "direct"
+    }
+]
+if vps_ips:
+    rules.append({
+        "ip_cidr": sorted(set(vps_ips)),
+        "outbound": "direct"
+    })
+config = {
+    "log": {
+        "level": "info",
+        "timestamp": True
+    },
+    "dns": {
+        "servers": [
+            {
+                "type": "udp",
+                "tag": "cloudflare",
+                "server": "1.1.1.1"
+            },
+            {
+                "type": "udp",
+                "tag": "google",
+                "server": "8.8.8.8"
+            }
+        ],
+        "final": "cloudflare"
+    },
+    "inbounds": [
+        {
+            "type": "tun",
+            "tag": "tun-in",
+            "interface_name": "sb-tun0",
+            "address": [
+                "172.19.0.1/30"
+            ],
+            "auto_route": False,
+            "strict_route": False,
+            "stack": "system"
+        },
+        {
+            "type": "mixed",
+            "tag": "mixed-in",
+            "listen": "127.0.0.1",
+            "listen_port": 2080
+        }
+    ],
+    "outbounds": outbounds,
+    "route": {
+        "default_domain_resolver": "cloudflare",
+        "auto_detect_interface": True,
+        "rules": rules,
+        "final": "select"
+    },
+    "experimental": {
+        "cache_file": {
+            "enabled": True
+        },
+        "clash_api": {
+            "external_controller": "0.0.0.0:9090",
+            "external_ui": ui_dir,
+            "external_ui_download_detour": "direct",
+            "access_control_allow_private_network": True,
+            "secret": ""
+        }
+    }
+}
+os.makedirs(os.path.dirname(out_file), exist_ok=True)
+with open(out_file, "w", encoding="utf-8") as f:
+    json.dump(config, f, indent=2, ensure_ascii=False)
+print("Создан sing-box config:", out_file)
+print("Добавлены outbound:")
+for tag in tags:
+    print("  - " + tag)
+if vps_ips:
+    print("Direct-исключения VPS:")
+    for ip in sorted(set(vps_ips)):
+        print("  - " + ip)
+if skipped:
+    print("Пропущены ссылки:")
+    for item in skipped:
+        print("  - " + item)
+PY
+}
+write_route_script() {
+  load_settings
+  cat > "$ROUTE_SCRIPT" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+SETTINGS_FILE="/etc/ps5-gateway/settings.env"
+# shellcheck disable=SC1090
+source "$SETTINGS_FILE"
+sysctl -w net.ipv4.ip_forward=1 >/dev/null
+ip route replace "$LAN_CIDR" dev "$LAN_IFACE" table "$TABLE_ID"
+if [ -f /etc/sing-box/config.json ]; then
+  python3 - "$LAN_GATEWAY" "$LAN_IFACE" "$TABLE_ID" <<'PY' | while read -r cmd; do
+import json
+import sys
+gw, iface, table = sys.argv[1], sys.argv[2], sys.argv[3]
+cfg = json.load(open("/etc/sing-box/config.json"))
+ips = set()
+for rule in cfg.get("route", {}).get("rules", []):
+    for item in rule.get("ip_cidr", []) or []:
+        if item.endswith("/32"):
+            ips.add(item[:-3])
+for ip in sorted(ips):
+    print(f"ip route replace {ip}/32 via {gw} dev {iface} table {table}")
+PY
+    [ -n "$cmd" ] && sh -c "$cmd"
+  done
+fi
+ip route replace default dev "$TUN_IFACE" table "$TABLE_ID"
+while ip rule del from "$ROUTE_SOURCE" table "$TABLE_ID" priority "$RULE_PRIORITY" 2>/dev/null; do :; done
+ip rule add from "$ROUTE_SOURCE" table "$TABLE_ID" priority "$RULE_PRIORITY"
+nft add table ip ps5gw_nat 2>/dev/null || true
+nft 'add chain ip ps5gw_nat postrouting { type nat hook postrouting priority 100; policy accept; }' 2>/dev/null || true
+nft flush chain ip ps5gw_nat postrouting
+nft add rule ip ps5gw_nat postrouting oifname "$LAN_IFACE" ip saddr "$LAN_CIDR" masquerade
+EOF
+  chmod +x "$ROUTE_SCRIPT"
+  cat > "$ROUTE_SERVICE" <<EOF
+[Unit]
+Description=PS5 Gateway policy routing
+After=network-online.target sing-box.service
+Wants=network-online.target
+Requires=sing-box.service
+[Service]
+Type=oneshot
+ExecStart=$ROUTE_SCRIPT
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target
+EOF
+  systemctl daemon-reload
+  systemctl enable ps5-gateway-route.service
+}
+apply_all() {
+  echo
+  echo "Проверяю sing-box config..."
+  sing-box check -c "$SINGBOX_CONFIG"
+  echo "Перезапускаю sing-box..."
+  systemctl restart sing-box
+  sleep 1
+  echo "Применяю маршрутизацию..."
+  systemctl restart ps5-gateway-route.service
+}
+show_result() {
+  load_settings
+  echo
+  echo "Готово."
+  echo
+  echo "Проверка mixed-прокси:"
+  echo "  curl -4 --max-time 20 -x socks5h://127.0.0.1:$MIXED_PORT ifconfig.me && echo"
+  echo
+  echo "Clash UI:"
+  echo "  http://$VM_IP:$CLASH_PORT/ui"
+  echo
+  echo "Настройки PS5/клиента:"
+  echo "  IP:      вручную или DHCP"
+  echo "  Gateway: $VM_IP"
+  echo "  DNS:     1.1.1.1 или 8.8.8.8"
+  echo
+  echo "Текущие ip rule:"
+  ip rule show || true
+  echo
+  echo "Текущая table $TABLE_ID:"
+  ip route show table "$TABLE_ID" || true
+  echo
+}
+install_flow() {
+  confirm_network
+  ask_client
+  save_settings
+  install_deps
+  install_singbox
+  install_ui
+  read_subscription_input
+  generate_singbox_config
+  write_route_script
+  apply_all
+  show_result
+}
+change_config_flow() {
+  load_settings
+  read_subscription_input
+  generate_singbox_config
+  apply_all
+  show_result
+}
+uninstall_flow() {
+  echo
+  echo "Удаляю настройки PS5 gateway..."
+  systemctl disable --now ps5-gateway-route.service 2>/dev/null || true
+  systemctl stop sing-box 2>/dev/null || true
+  if [ -f "$SETTINGS_FILE" ]; then
+    # shellcheck disable=SC1090
+    source "$SETTINGS_FILE"
+    while ip rule del from "$ROUTE_SOURCE" table "$TABLE_ID" priority "$RULE_PRIORITY" 2>/dev/null; do :; done
+    ip route flush table "$TABLE_ID" 2>/dev/null || true
+  fi
+  nft delete table ip ps5gw_nat 2>/dev/null || true
+  rm -f "$ROUTE_SERVICE" "$ROUTE_SCRIPT"
+  systemctl daemon-reload
+  read -r -p "Удалить sing-box, /etc/sing-box и /etc/ps5-gateway? [y/N]: " remove_all
+  remove_all="${remove_all:-N}"
+  if [[ "$remove_all" =~ ^[YyДд]$ ]]; then
+    if command -v sing-box >/dev/null 2>&1; then
+      curl -fsSL https://sing-box.app/install.sh -o /tmp/sing-box-install.sh
+      sh /tmp/sing-box-install.sh --remove || true
+      rm -f /tmp/sing-box-install.sh
+    fi
+    rm -rf "$SINGBOX_DIR" "$APP_DIR"
+  fi
+  echo "Удаление завершено."
+}
+main_menu() {
+  echo
+  echo "PS5 Gateway + sing-box"
+  echo
+  echo "1. Установить"
+  echo "2. Удалить"
+  echo "3. Изменить конфигурацию"
+  echo
+  read -r -p "Выбор [1-3]: " choice
+  case "$choice" in
+    1) install_flow ;;
+    2) uninstall_flow ;;
+    3) change_config_flow ;;
+    *) echo "Неверный выбор"; exit 1 ;;
+  esac
+}
+need_root
+main_menu
