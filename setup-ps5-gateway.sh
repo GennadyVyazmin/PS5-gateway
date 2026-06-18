@@ -29,13 +29,24 @@ detect_network() {
   fi
   LAN_IFACE="$(echo "$DEFAULT_LINE" | awk '{for(i=1;i<=NF;i++) if($i=="dev") print $(i+1)}')"
   LAN_GATEWAY="$(echo "$DEFAULT_LINE" | awk '{for(i=1;i<=NF;i++) if($i=="via") print $(i+1)}')"
-  VM_IP="$(ip -4 addr show dev "$LAN_IFACE" | awk '/inet / {print $2}' | head -n1 | cut -d/ -f1)"
-  LAN_CIDR="$(ip -4 route show dev "$LAN_IFACE" scope link | awk '{print $1}' | head -n1)"
+  VM_CIDR="$(ip -o -4 addr show dev "$LAN_IFACE" scope global | awk '{print $4}' | head -n1)"
+  VM_IP="${VM_CIDR%/*}"
+  LAN_CIDR="$(ip -4 route show dev "$LAN_IFACE" scope link | awk '{print $1}' | grep '/' | head -n1)"
+  if [ -z "${LAN_CIDR:-}" ] || [[ "$LAN_CIDR" == /* ]]; then
+    LAN_CIDR="$(python3 - "$VM_CIDR" <<'PY'
+import ipaddress
+import sys
+iface = ipaddress.ip_interface(sys.argv[1])
+print(str(iface.network))
+PY
+)"
+  fi
   if [ -z "${LAN_IFACE:-}" ] || [ -z "${LAN_GATEWAY:-}" ] || [ -z "${VM_IP:-}" ] || [ -z "${LAN_CIDR:-}" ]; then
     echo "Не смог автоматически определить сеть."
     echo "LAN_IFACE=$LAN_IFACE"
     echo "LAN_GATEWAY=$LAN_GATEWAY"
     echo "VM_IP=$VM_IP"
+    echo "VM_CIDR=$VM_CIDR"
     echo "LAN_CIDR=$LAN_CIDR"
     exit 1
   fi
@@ -53,9 +64,9 @@ confirm_network() {
   ok="${ok:-Y}"
   if [[ ! "$ok" =~ ^[YyДд]$ ]]; then
     read -r -p "Интерфейс VM, например enp0s3/ens18: " LAN_IFACE
-    read -r -p "IP VM, например 192.168.88.18: " VM_IP
-    read -r -p "IP роутера, например 192.168.88.1: " LAN_GATEWAY
-    read -r -p "LAN CIDR, например 192.168.88.0/24: " LAN_CIDR
+    read -r -p "IP VM, например 192.168.10.148: " VM_IP
+    read -r -p "IP роутера, например 192.168.10.1: " LAN_GATEWAY
+    read -r -p "LAN CIDR, например 192.168.10.0/24: " LAN_CIDR
   fi
 }
 install_deps() {
@@ -87,6 +98,11 @@ install_singbox() {
 }
 install_ui() {
   mkdir -p "$SINGBOX_DIR"
+  if [ -d "$UI_DIR/.git" ]; then
+    echo "Обновляю MetaCubeXD UI..."
+    git -C "$UI_DIR" pull --ff-only || true
+    return
+  fi
   rm -rf "$UI_DIR"
   echo "Скачиваю MetaCubeXD UI..."
   if git clone https://github.com/MetaCubeX/metacubexd.git -b gh-pages "$UI_DIR"; then
@@ -110,7 +126,7 @@ ask_client() {
   if [ "$route_mode" = "2" ]; then
     ROUTE_SOURCE="$LAN_CIDR"
   else
-    read -r -p "IP PS5/клиента, например 192.168.88.10: " CLIENT_IP
+    read -r -p "IP PS5/клиента, например 192.168.10.28: " CLIENT_IP
     if [ -z "$CLIENT_IP" ]; then
       echo "IP клиента пустой."
       exit 1
@@ -138,7 +154,6 @@ load_settings() {
     echo "Настройки не найдены. Сначала выбери пункт 1 — установить."
     exit 1
   fi
-  # shellcheck disable=SC1090
   source "$SETTINGS_FILE"
 }
 read_subscription_input() {
@@ -152,11 +167,12 @@ read_subscription_input() {
   echo "  - обычный список vless://"
   echo "  - base64 от списка vless://"
   echo "  - type=tcp"
-  echo "  - type=xhttp, будет преобразован в HTTP transport"
   echo "  - type=http/h2"
   echo "  - type=ws"
   echo "  - type=grpc"
   echo "  - type=httpupgrade"
+  echo
+  echo "type=xhttp обычным sing-box transport не поддерживается, такие ссылки будут пропущены."
   echo
   echo "Когда закончишь вставку, нажми Enter на пустой строке."
   echo
@@ -293,16 +309,8 @@ for idx, link in enumerate(links, start=1):
         if link_type == "tcp":
             transport = None
         elif link_type == "xhttp":
-            path = first(q, "path", default="/")
-            host = first(q, "host", default="")
-            method = first(q, "method", default="GET")
-            transport = {
-                "type": "http",
-                "path": path or "/",
-                "method": method or "GET"
-            }
-            if host:
-                transport["host"] = [host]
+            skipped.append(f"{fragment or server}: type=xhttp обычным sing-box transport не поддерживается, пропускаю")
+            continue
         elif link_type in ("http", "h2"):
             path = first(q, "path", default="/")
             host = first(q, "host", default="")
@@ -501,15 +509,50 @@ if skipped:
         print("  - " + item)
 PY
 }
+reset_runtime_state() {
+  echo "Очищаю старые runtime-правила..."
+  systemctl disable --now ps5-gateway-route.service 2>/dev/null || true
+  while ip rule del priority "$RULE_PRIORITY" table "$TABLE_ID" 2>/dev/null; do :; done
+  while ip rule del priority "$RULE_PRIORITY" 2>/dev/null; do :; done
+  ip route flush table "$TABLE_ID" 2>/dev/null || true
+  nft delete table ip ps5gw_nat 2>/dev/null || true
+  rm -f "$ROUTE_SERVICE"
+  rm -f "$ROUTE_SCRIPT"
+  systemctl daemon-reload
+}
 write_route_script() {
   load_settings
   cat > "$ROUTE_SCRIPT" <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
 SETTINGS_FILE="/etc/ps5-gateway/settings.env"
-# shellcheck disable=SC1090
 source "$SETTINGS_FILE"
 sysctl -w net.ipv4.ip_forward=1 >/dev/null
+echo "Waiting for network interface $LAN_IFACE..."
+for i in $(seq 1 60); do
+  if ip link show "$LAN_IFACE" >/dev/null 2>&1; then
+    break
+  fi
+  sleep 1
+done
+if ! ip link show "$LAN_IFACE" >/dev/null 2>&1; then
+  echo "Error: LAN interface $LAN_IFACE not found after waiting"
+  exit 1
+fi
+echo "Waiting for TUN interface $TUN_IFACE..."
+for i in $(seq 1 60); do
+  if ip link show "$TUN_IFACE" >/dev/null 2>&1; then
+    break
+  fi
+  sleep 1
+done
+if ! ip link show "$TUN_IFACE" >/dev/null 2>&1; then
+  echo "Error: TUN interface $TUN_IFACE not found after waiting"
+  exit 1
+fi
+while ip rule del priority "$RULE_PRIORITY" table "$TABLE_ID" 2>/dev/null; do :; done
+while ip rule del priority "$RULE_PRIORITY" 2>/dev/null; do :; done
+ip route flush table "$TABLE_ID" 2>/dev/null || true
 ip route replace "$LAN_CIDR" dev "$LAN_IFACE" table "$TABLE_ID"
 if [ -f /etc/sing-box/config.json ]; then
   python3 - "$LAN_GATEWAY" "$LAN_IFACE" "$TABLE_ID" <<'PY' | while read -r cmd; do
@@ -529,12 +572,12 @@ PY
   done
 fi
 ip route replace default dev "$TUN_IFACE" table "$TABLE_ID"
-while ip rule del from "$ROUTE_SOURCE" table "$TABLE_ID" priority "$RULE_PRIORITY" 2>/dev/null; do :; done
 ip rule add from "$ROUTE_SOURCE" table "$TABLE_ID" priority "$RULE_PRIORITY"
 nft add table ip ps5gw_nat 2>/dev/null || true
 nft 'add chain ip ps5gw_nat postrouting { type nat hook postrouting priority 100; policy accept; }' 2>/dev/null || true
 nft flush chain ip ps5gw_nat postrouting
 nft add rule ip ps5gw_nat postrouting oifname "$LAN_IFACE" ip saddr "$LAN_CIDR" masquerade
+echo "PS5 gateway route applied"
 EOF
   chmod +x "$ROUTE_SCRIPT"
   cat > "$ROUTE_SERVICE" <<EOF
@@ -545,8 +588,11 @@ Wants=network-online.target
 Requires=sing-box.service
 [Service]
 Type=oneshot
+ExecStartPre=/bin/sleep 5
 ExecStart=$ROUTE_SCRIPT
 RemainAfterExit=yes
+Restart=on-failure
+RestartSec=5
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -559,7 +605,7 @@ apply_all() {
   sing-box check -c "$SINGBOX_CONFIG"
   echo "Перезапускаю sing-box..."
   systemctl restart sing-box
-  sleep 1
+  sleep 3
   echo "Применяю маршрутизацию..."
   systemctl restart ps5-gateway-route.service
 }
@@ -585,6 +631,9 @@ show_result() {
   echo "Текущая table $TABLE_ID:"
   ip route show table "$TABLE_ID" || true
   echo
+  echo "Статус ps5-gateway-route.service:"
+  systemctl status ps5-gateway-route.service --no-pager -l || true
+  echo
 }
 install_flow() {
   confirm_network
@@ -595,6 +644,7 @@ install_flow() {
   install_ui
   read_subscription_input
   generate_singbox_config
+  reset_runtime_state
   write_route_script
   apply_all
   show_result
@@ -603,6 +653,7 @@ change_config_flow() {
   load_settings
   read_subscription_input
   generate_singbox_config
+  write_route_script
   apply_all
   show_result
 }
@@ -611,14 +662,12 @@ uninstall_flow() {
   echo "Удаляю настройки PS5 gateway..."
   systemctl disable --now ps5-gateway-route.service 2>/dev/null || true
   systemctl stop sing-box 2>/dev/null || true
-  if [ -f "$SETTINGS_FILE" ]; then
-    # shellcheck disable=SC1090
-    source "$SETTINGS_FILE"
-    while ip rule del from "$ROUTE_SOURCE" table "$TABLE_ID" priority "$RULE_PRIORITY" 2>/dev/null; do :; done
-    ip route flush table "$TABLE_ID" 2>/dev/null || true
-  fi
+  while ip rule del priority "$RULE_PRIORITY" table "$TABLE_ID" 2>/dev/null; do :; done
+  while ip rule del priority "$RULE_PRIORITY" 2>/dev/null; do :; done
+  ip route flush table "$TABLE_ID" 2>/dev/null || true
   nft delete table ip ps5gw_nat 2>/dev/null || true
-  rm -f "$ROUTE_SERVICE" "$ROUTE_SCRIPT"
+  rm -f "$ROUTE_SERVICE"
+  rm -f "$ROUTE_SCRIPT"
   systemctl daemon-reload
   read -r -p "Удалить sing-box, /etc/sing-box и /etc/ps5-gateway? [y/N]: " remove_all
   remove_all="${remove_all:-N}"
